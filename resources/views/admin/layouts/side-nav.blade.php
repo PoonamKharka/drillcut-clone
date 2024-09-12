@@ -56,6 +56,18 @@
               </p>
             </a>
           </li>
+          
+          @can('show-analytic')
+            <li class="nav-item">
+              <a href="{{ route('reports.index') }}" class="nav-link {{ request()->is('reports*') ? 'active' : '' }}">
+                <i class="nav-icon fas fa-chart-bar"></i>
+                <p>
+                  Analytics
+                </p>
+              </a>
+            </li>
+          @endcan
+          
         </ul>
       </nav>
       <!-- /.sidebar-menu -->

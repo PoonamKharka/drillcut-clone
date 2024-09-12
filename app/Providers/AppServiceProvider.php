@@ -32,5 +32,13 @@ class AppServiceProvider extends ServiceProvider
             return false;
           }
        });
+
+       Gate::define('show-analytic' , function(User $user) {
+        if( $user->roles_id === 1 ) {
+          return true;
+        }  else {
+          return false;
+        }
+     });
     }
 }

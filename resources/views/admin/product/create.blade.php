@@ -60,8 +60,9 @@
                     <div class="form-group">
                         <label>Category</label>
                         <select class="custom-select" name=category>
-                        <option selected="selected">E</option>
-                        <option>Alaska</option>
+                            <option>Electronic</option>
+                            <option>Toy & Games</option>
+                            <option>Animals and Pet Supply</option>
                         </select>
                     </div>
                 </div>
@@ -82,7 +83,7 @@
                                     <div class="input-group-prepend">
                                         <span class="input-group-text">$</span>
                                     </div>
-                                    <input type="text" class="form-control" name="price">
+                                    <input type="text" class="form-control" name="price" value="0.00">
                                 </div>
                             </div>
                         </div>
@@ -94,17 +95,43 @@
                                     <div class="input-group-prepend">
                                     <span class="input-group-text">$</span>
                                     </div>
-                                    <input type="text" class="form-control">
+                                    <input type="text" class="form-control" value="0.00">
                                 </div>
                             </div>
                         </div>
                         </div>
                     <div class="form-group">
                         <div class="custom-control custom-checkbox">
-                            <input class="custom-control-input" type="checkbox" id="tax" value="1">
+                            <input class="custom-control-input" type="checkbox" id="tax" value="1" checked>
                             <label for="tax" class="custom-control-label">Charge tax on this product</label>
                         </div>
                     </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="pageTitle">Cost per item</label><br>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">$</span>
+                                    </div>
+                                    <input type="text" class="form-control" name="costPerItem" value="0.00">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="pageTitle">Profit</label><br>
+                                <input type="text" class="form-control" value="--">
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="pageTitle">Margin</label><br>
+                                <input type="text" class="form-control" value="--">
+                            </div>
+                        </div>
+                        </div>
                 </div>
             </div>
             {{-- end card 2nd --}}
@@ -114,6 +141,12 @@
                 <div class="card-body">
                     <div class="form-group">
                         <label for="inventory">Inventory</label>
+                    </div>
+                    <div class="form-group row">
+                        <div class="custom-control custom-checkbox">
+                            <input class="custom-control-input" type="checkbox" id="trackQuantity" value="1" checked>
+                            <label for="trackQuantity" class="custom-control-label">Track quantity</label>
+                        </div>
                     </div>
                     <div class="row">
                         <div class="col-md-6">
@@ -130,9 +163,35 @@
                             </div>
                         </div>
                     </div>
+                    <label for="pricing">Quantity</label>
+                    <br>
+                    <div class="form-group row">
+                        <label for="stockClassification" class="col-sm-4 col-form-label">Hobart</label>
+                        <div class="col-sm-4">
+                          <input type="number" class="form-control" id="stockClassification" name="stockClassification" value="0">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="stockClassification" class="col-sm-4 col-form-label">Launceston</label>
+                        <div class="col-sm-4">
+                          <input type="text" class="form-control" id="downloadFileName" name="downloadFileName" value="0">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="stockClassification" class="col-sm-4 col-form-label">Melbourne</label>
+                        <div class="col-sm-4">
+                          <input type="text" class="form-control" id="downloadFileName" name="downloadFileName" value="0">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="stockClassification" class="col-sm-4 col-form-label">Sydney</label>
+                        <div class="col-sm-4">
+                          <input type="text" class="form-control" id="downloadFileName" name="downloadFileName" value="0">
+                        </div>
+                    </div>
                     <div class="custom-control custom-checkbox">
                         <input class="custom-control-input" type="checkbox" id="trackQuantity" value="1">
-                        <label for="trackQuantity" class="custom-control-label">Track quantity</label>
+                        <label for="trackQuantity" class="custom-control-label">This product has a SKU or barcode</label>
                     </div>
                     <div class="custom-control custom-checkbox">
                         <input class="custom-control-input" type="checkbox" id="settingOutStock" value="1">
@@ -150,7 +209,7 @@
                     </div>
                     <div class="form-group row">
                         <div class="custom-control custom-checkbox">
-                            <input class="custom-control-input" type="checkbox" id="physicalProduc" value="1">
+                            <input class="custom-control-input" type="checkbox" id="physicalProduc" value="1" checked>
                             <label for="physicalProduc" class="custom-control-label">This is a physical product</label>
                         </div>
                     </div>
@@ -258,6 +317,10 @@
                         <div class="form-group">
                             <label>Publishing</label>
                             <p>Sales channels</p>
+                            <ol style="list-style-type: inherit;">
+                                <li>Online Store</li>
+                                <li>Point of Sale, Drillcut Storefront, Drilcutt, and 2 more</li>
+                            </ol>
                         </div>
                     </div>
                 </div>
@@ -278,16 +341,19 @@
                         </div>
                         <div class="form-group">
                             <label for="collection">Collections</label>
-                            <select class="custom-select" name="collection">
-                                <option selected="selected">Active</option>
-                                <option>Draft</option>
+                            <select class="select2" multiple="multiple" style="width: 100%;">
+                                <option>Home Page</option>
+                                <option>Sub Plumbing</option>
                             </select>
                         </div>
                         <div class="form-group">
                             <label for="tags">Tags</label>
-                            <select class="custom-select" name="tags">
-                                <option selected="selected">Active</option>
-                                <option>Draft</option>
+                            <select class="select2" multiple="multiple" style="width: 100%;">
+                                <option>Electrical Trade</option>
+                                <option>Fire Trade</option>
+                                <option>HVAC Trade</option>
+                                <option>Plumbing Trade</option>
+                                <option>Fasteners and Fixings</option>
                             </select>
                         </div>
                     </div>
@@ -296,7 +362,7 @@
                     <div class="card-body">
                         <div class="form-group">
                             <p for="tags">Theme template</p>
-                            <select class="form-control select2" style="width: 100%;" name="tags">
+                            <select class="form-control" style="width: 100%;" name="tags">
                                 <option selected="selected">Default product</option>
                                 <option>Test</option>
                             </select>
@@ -326,5 +392,8 @@
             .catch(error => {
                 console.error('Error during initialization of the editor', error);
             });
+
+        //Initialize Select2 Elements
+        $('.select2').select2();
     </script>
 @endsection

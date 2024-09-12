@@ -23,7 +23,9 @@
   <!-- summernote -->
   <link rel="stylesheet" href="{{ asset('adminlte/plugins/summernote/summernote-bs4.min.css') }}">
   <link rel="stylesheet" href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css">
-
+  <!-- Select2 -->
+  <link rel="stylesheet" href="{{ asset('adminlte/plugins/select2/css/select2.min.css') }}">
+  <link rel="stylesheet" href="{{ asset('adminlte/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css') }}">
   {{-- All Common Scripts --}}
   <!-- jQuery -->
 <script src="{{  asset('adminlte/plugins/jquery/jquery.min.js') }}"></script>
@@ -38,6 +40,10 @@
 <script src="https://cdn.ckeditor.com/ckeditor5/34.0.0/classic/ckeditor.js"></script>
 <!-- Bootstrap 4 -->
 <script src="{{  asset('adminlte/plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+<!-- Select2 -->
+<script src="{{  asset('adminlte/plugins/select2/js/select2.full.min.js') }}"></script>
+<!-- Bootstrap4 Duallistbox -->
+<script src="{{  asset('adminlte/plugins/bootstrap4-duallistbox/jquery.bootstrap-duallistbox.min.js')}}"></script>
 <!-- ChartJS -->
 {{-- <script src="{{  asset('adminlte/plugins/chart.js/Chart.min.js') }}"></script> --}}
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
