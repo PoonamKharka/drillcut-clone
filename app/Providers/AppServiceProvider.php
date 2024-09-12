@@ -25,7 +25,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-       Gate::define('add-product' , function(User $user) {
+      Gate::define('add-product' , function(User $user) {
           if( $user->roles_id === 1 ) {
             return true;
           }  else {
@@ -33,7 +33,15 @@ class AppServiceProvider extends ServiceProvider
           }
        });
 
-       Gate::define('show-analytic' , function(User $user) {
+      Gate::define('show-analytic' , function(User $user) {
+        if( $user->roles_id === 1 ) {
+          return true;
+        }  else {
+          return false;
+        }
+      });
+
+      Gate::define('show-navigation' , function(User $user) {
         if( $user->roles_id === 1 ) {
           return true;
         }  else {

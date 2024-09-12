@@ -6,6 +6,7 @@ use App\Http\Controllers\OrderController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ReportsController;
+use App\Http\Controllers\NavigationController;
 
 Route::group(['middleware' => 'guest'], function () {
     Route::get('/', [AuthController::class, 'loginPage']);
@@ -18,6 +19,7 @@ Route::group(['middleware' => 'guest'], function () {
       'users' =>  UserController::class,
       'products' => ProductController::class,
       'reports' => ReportsController::class,
+      'navigation' => NavigationController::class,
     ]);
   });
  

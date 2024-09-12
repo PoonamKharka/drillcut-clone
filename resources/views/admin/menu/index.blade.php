@@ -5,12 +5,12 @@
   <div class="container-fluid">
     <div class="row mb-2">
       <div class="col-sm-6">
-        <h1 class="m-0">Menu</h1>
+        <h1 class="m-0">Menus</h1>
       </div><!-- /.col -->
       <div class="col-sm-6">
         <ol class="breadcrumb float-sm-right">
           <li class="breadcrumb-item"><a href="#">Home</a></li>
-          <li class="breadcrumb-item active">Menu</li>
+          <li class="breadcrumb-item active">Menus</li>
         </ol>
       </div>
       <!-- /.col -->
@@ -26,15 +26,25 @@
           <div class="col-12">
             <div class="card">
               <div class="card-header">
-                <h3 class="card-title">Menu</h3>
+                <div class="card-tools">
+                  <a href="{{ route('navigation.create') }}" class="btn btn-block btn-success btn-sm" >Add menu</a> 
+                </div>
               </div>
+              @if (session('success'))
+                <div class="alert alert-success">
+                  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <i class="fas fa-times"></i>
+                  </button>
+                    {{ session('success') }}
+                </div>
+              @endif
               <!-- /.card-header -->
               <div class="card-body">
                 <table id="y_dataTables" class="table table-bordered table-hover">
                   <thead>
                   <tr>
-                    <th>Name</th>
-                    <th>Parent</th>
+                    <th>Title</th>
+                    <th>Menu items</th>
                     <th>Action</th>
                   </tr>
                   </thead>
@@ -57,11 +67,10 @@ $(function() {
       $('#y_dataTables').DataTable({
              processing: false,
              serverSide: true,
-             ajax: "{{ route('menus.index') }}",
+             ajax: "{{ route('navigation.index') }}",
              columns: [
-                      // { data: 'id', name: 'id' },
-                      { data: 'name', name: 'name' },
-                      { data: 'parent', name: 'parent' },
+                      { data: 'title', name: 'title' },
+                      { data: 'menu_items' , name: 'menu_items'},
                       { data: 'action', name: 'action', orderable: false, searchable: false},
                    ]
           });

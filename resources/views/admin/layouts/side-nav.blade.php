@@ -67,7 +67,16 @@
               </a>
             </li>
           @endcan
-          
+          @can('show-navigation')
+          <li class="nav-item">
+            <a href="{{ route('navigation.index') }}" class="nav-link {{ request()->is('navigation*') ? 'active' : '' }}">
+              <i class="nav-icon fas fa-bars"></i>
+              <p>
+                Navigation
+              </p>
+            </a>
+          </li>
+          @endcan
         </ul>
       </nav>
       <!-- /.sidebar-menu -->
