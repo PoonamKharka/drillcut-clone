@@ -26,7 +26,7 @@ class StoreProductRequest extends FormRequest
             'title' => 'required',
             'description' => 'required',
             'price' => 'required',
-            'sku' => 'required',
+            'sku' => 'required|unique:products',
             'barcode' => 'required',
         ];
     }

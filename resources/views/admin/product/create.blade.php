@@ -89,7 +89,7 @@
                                     <div class="input-group-prepend">
                                         <span class="input-group-text">$</span>
                                     </div>
-                                    <input type="text" class="form-control" name="price" value="0.00">
+                                    <input type="number" class="form-control" name="price" value="0.00" step=".01">
                                     @error('price')
                                         <span class="text-danger">{{ $message }}</span>
                                     @enderror
@@ -104,7 +104,7 @@
                                     <div class="input-group-prepend">
                                     <span class="input-group-text">$</span>
                                     </div>
-                                    <input type="text" class="form-control" value="0.00">
+                                    <input type="number" class="form-control" value="0.00" step=".01">
                                 </div>
                             </div>
                         </div>
@@ -123,7 +123,7 @@
                                     <div class="input-group-prepend">
                                         <span class="input-group-text">$</span>
                                     </div>
-                                    <input type="text" class="form-control" name="costPerItem" value="0.00">
+                                    <input type="number" class="form-control" name="costPerItem" value="0.00" step=".01">
                                 </div>
                             </div>
                         </div>
@@ -131,13 +131,13 @@
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label for="pageTitle">Profit</label><br>
-                                <input type="text" class="form-control" value="--">
+                                <input type="number" class="form-control" value="--" step=".01">
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label for="pageTitle">Margin</label><br>
-                                <input type="text" class="form-control" value="--">
+                                <input type="number" class="form-control" value="--" step=".01">
                             </div>
                         </div>
                         </div>
@@ -205,8 +205,8 @@
                         </div>
                     </div>
                     <div class="custom-control custom-checkbox">
-                        <input class="custom-control-input" type="checkbox" id="trackQuantity" value="1">
-                        <label for="trackQuantity" class="custom-control-label">This product has a SKU or barcode</label>
+                        <input class="custom-control-input" type="checkbox" id="hasbarcde" value="1">
+                        <label for="hasbarcde" class="custom-control-label">This product has a SKU or barcode</label>
                     </div>
                     <div class="custom-control custom-checkbox">
                         <input class="custom-control-input" type="checkbox" id="settingOutStock" value="1">

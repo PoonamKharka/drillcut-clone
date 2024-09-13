@@ -7,6 +7,7 @@ use Yajra\DataTables\DataTables;
 use App\Models\Product;
 use Illuminate\Support\Facades\Gate;
 use App\Http\Requests\StoreProductRequest;
+use Carbon\Carbon;
 
 class ProductController extends Controller
 {   
@@ -16,12 +17,12 @@ class ProductController extends Controller
     public function index(Request $request)
     {
         if($request->ajax()) {
-            $data = Product::select(['sku', 'title', 'price', 'status' , 'image_url'])->orderBy('created_at' , 'DESC');
+            $data = Product::select(['sku', 'title', 'price', 'status' , 'image_url' , 'created_at'])->orderBy('created_at' , 'DESC');
             return DataTables::of($data)
                 ->addColumn('image', function ($row) {
                     $link = url('images/'.$row->image_url);
                     if( $row->image_url === null) {
-                        $notFoundImg = url('images/Not_Found/not_found.png');
+                        $notFoundImg = url('images/Not_Found/ProductPlaceholder.jpg');
                         return '<img alt="product image" style="width:50px;height:50px" class="table-avatar" src="'. $notFoundImg .'">';
                     }
                     if(filter_var($row->image_url, FILTER_VALIDATE_URL)) {
@@ -32,8 +33,11 @@ class ProductController extends Controller
                    
                 })
                 ->addColumn('product_price', function ($row) {
-                   return '$'. ' '. $row->price ;
+                   return '$'. ' '. $row->price;
                 })
+                ->addColumn('date', function ($row) {
+                    return Carbon::parse($row['createdAt'])->toDayDateTimeString();
+                 })
                 ->addColumn('product_status', function ($row) {
                     if ($row->status == 1) {
                         return '<h5><span class="badge badge-success">Active</a></h5>';
@@ -42,7 +46,7 @@ class ProductController extends Controller
                         return '<h5><span class="badge badge-warning">Draft</a></h5>';
                     }
                 })
-                ->rawColumns(['product_status', 'image' , 'product_price'])
+                ->rawColumns(['product_status', 'image' , 'product_price' , 'date'])
                 ->make(true);
         }
 
@@ -74,10 +78,10 @@ class ProductController extends Controller
         $prodData['variant'] = "Default Title";
         if( $request->productImage ){
             $imageName = time().'.'.$request->productImage->extension();
-            $prodData->productImage->move(public_path('images'), $imageName);
+            $request->productImage->move(public_path('images'), $imageName);
             $prodData['image_url'] = $imageName;
         }
-        //dd($prodData);
+        
         $insert = Product::create($prodData);
         if($insert) {
             return redirect()->route('products.index')->with('success', 'Product Added!');

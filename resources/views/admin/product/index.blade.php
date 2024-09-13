@@ -32,6 +32,14 @@
                 </div>
                 @endcan
               </div>
+              @if (session('success'))
+                <div class="alert alert-success">
+                  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <i class="fas fa-times"></i>
+                  </button>
+                    {{ session('success') }}
+                </div>
+              @endif
               <!-- /.card-header -->
               <div class="card-body">
                 <table id="y_dataTables" class="table table-bordered table-hover">
@@ -41,6 +49,7 @@
                     <th>Name</th>
                     <th>Image</th>
                     <th>Price</th>
+                    <th>Created At</th>
                     <th>Status</th>
                   </tr>
                   </thead>
@@ -69,6 +78,7 @@ $(function() {
                       { data: 'title', name: 'title' },
                       { data: 'image', name: 'image' },
                       { data: 'product_price', name: 'product_price' },
+                      { data: 'date', name: 'date' },
                       { data: 'product_status', name: 'product_status' },
                    ]
           });
