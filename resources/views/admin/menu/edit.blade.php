@@ -89,7 +89,7 @@
                 </div>
                 <div class="modal-body">
                   <meta name="csrf-token" content="{{ csrf_token() }}">
-                  <form>
+                  <form id="menuForm">
                     @csrf
                     @method('PUT')
                     <input type="hidden" id="menu-id" name="id">
@@ -141,7 +141,7 @@
       })
     });
 
-    $("form").submit(function(e){
+    $('#menuForm').submit(function(e){
       e.preventDefault();
       var itemId = $('#menu-id').val();
       var formData = $(this).serialize(); // Collect form data
@@ -154,7 +154,9 @@
         data: formData,
         success: function(response) {
                 alert('Record updated successfully!');
+                location.reload(true);
                 $('#myModal').modal('hide');
+
             },
             error: function(err) {
                 alert('Error updating record');

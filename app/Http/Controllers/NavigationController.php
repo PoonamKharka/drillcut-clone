@@ -18,14 +18,16 @@ class NavigationController extends Controller
             return DataTables::of($menuList)
                     ->editColumn('menu_items', function ($row) {
                         $getItems = Navigation::where('parent_id', '=', $row->id)->get()->toArray();
-                        $array_items = [];
-                        foreach ($getItems as $items) {
-                            $arr[]  = $items['title'];
+                        if($getItems) {
+                            $array_items = [];
+                            foreach ($getItems as $items) {
+                                $arr[]  = $items['title'];
+                            }
+                            $array_items[] = implode(" , " , $arr);
+                            return $array_items;
+                        } else {
+                            return 'None';
                         }
-                        //dd($arr);
-                        $array_items[] = implode(" , " , $arr);
-                        return $array_items;
-                        
                     })
                     ->addColumn('action', function($row){
                         $btn = '<a href="' . route('navigation.edit', encrypt($row->id)) . '" class="btn btn-sm btn-info"><i class="fas fa-eye"></i></a>';

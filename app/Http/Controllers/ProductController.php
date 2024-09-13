@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Yajra\DataTables\DataTables;
 use App\Models\Product;
 use Illuminate\Support\Facades\Gate;
+use App\Http\Requests\StoreProductRequest;
 
 class ProductController extends Controller
 {   
@@ -19,6 +20,10 @@ class ProductController extends Controller
             return DataTables::of($data)
                 ->addColumn('image', function ($row) {
                     $link = url('images/'.$row->image_url);
+                    if( $row->image_url === null) {
+                        $notFoundImg = url('images/Not_Found/not_found.png');
+                        return '<img alt="product image" style="width:50px;height:50px" class="table-avatar" src="'. $notFoundImg .'">';
+                    }
                     if(filter_var($row->image_url, FILTER_VALIDATE_URL)) {
                         return '<img alt="product image" style="width:50px;height:50px" class="table-avatar" src="'. $row->image_url .'">';
                     } else {
@@ -57,17 +62,23 @@ class ProductController extends Controller
      * For storing products into the database
      * @return
      */
-    public function store(Request $request) {
+    public function store(StoreProductRequest $request) {
+        
+        $prodData = $request->validated(); 
+        //dd($prodData);
         $randomNumber = mt_rand(1000000000000, 9999999999999); 
-        $request['sid'] = "$randomNumber";
+        $prodData['sid'] = "$randomNumber";
         $custom = hexdec(uniqid());
-        $request['product_id'] = "$custom";
-        $request['extrafields'] = "[]";
-        $request['variant'] = "Default Title";
-        $imageName = time().'.'.$request->productImage->extension();
-        $request->productImage->move(public_path('images'), $imageName);
-        $request['image_url'] = $imageName;
-        $insert = Product::create($request->all());
+        $prodData['product_id'] = "$custom";
+        $prodData['extrafields'] = "[]";
+        $prodData['variant'] = "Default Title";
+        if( $request->productImage ){
+            $imageName = time().'.'.$request->productImage->extension();
+            $prodData->productImage->move(public_path('images'), $imageName);
+            $prodData['image_url'] = $imageName;
+        }
+        //dd($prodData);
+        $insert = Product::create($prodData);
         if($insert) {
             return redirect()->route('products.index')->with('success', 'Product Added!');
         }

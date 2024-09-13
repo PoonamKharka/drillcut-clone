@@ -40,10 +40,16 @@
                     <div class="form-group">
                         <label for="title">Title</label>
                         <input type="text" class="form-control" id="title" placeholder="Short sleeve t-shirt" name="title">
+                        @error('title')
+                            <span class="text-danger">{{ $message }}</span>
+                        @enderror
                     </div>
                     <div class="form-group">
                         <label for="description">Description</label>
                         <textarea id="summernote" name="description"></textarea>
+                        @error('description')
+                            <span class="text-danger">{{ $message }}</span>
+                        @enderror
                     </div>
                     <div class="form-group">
                         <label for="productImage">File input</label>
@@ -84,6 +90,9 @@
                                         <span class="input-group-text">$</span>
                                     </div>
                                     <input type="text" class="form-control" name="price" value="0.00">
+                                    @error('price')
+                                        <span class="text-danger">{{ $message }}</span>
+                                    @enderror
                                 </div>
                             </div>
                         </div>
@@ -153,6 +162,9 @@
                             <div class="form-group">
                                 <label for="pageTitle">SKU (Stock Keeping Unit)</label><br>
                                 <input type="text" class="form-control" name="sku">
+                                @error('sku')
+                                    <span class="text-danger">{{ $message }}</span>
+                                @enderror
                             </div>
                         </div>
 
@@ -160,6 +172,9 @@
                             <div class="form-group">
                                 <label for="pageTitle">Barcode (ISBN, UPC,GTIN,etc.)</label><br>
                                 <input type="text" class="form-control" name="barcode">
+                                @error('barcode')
+                                    <span class="text-danger">{{ $message }}</span>
+                                @enderror
                             </div>
                         </div>
                     </div>

@@ -28,7 +28,7 @@
               <div class="card-header">
                 @can('add-product')
                 <div class="card-tools">
-                  <a href="{{ route('products.create') }}" class="btn btn-block btn-success btn-sm" >Add product</a> 
+                  <a href="{{ route('products.create') }}" class="btn btn-block btn-success btn-sm">Add product</a> 
                 </div>
                 @endcan
               </div>
