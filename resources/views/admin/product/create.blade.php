@@ -321,8 +321,8 @@
                         <div class="form-group">
                             <label>Status</label>
                             <select class="custom-select" name="status">
-                                <option selected="selected" value="1">Active</option>
-                                <option value="0">Draft</option>
+                                <option selected="selected" value=1>Active</option>
+                                <option value=0>Draft</option>
                             </select>
                         </div>
                     </div>

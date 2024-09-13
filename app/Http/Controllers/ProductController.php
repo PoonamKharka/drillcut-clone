@@ -69,7 +69,6 @@ class ProductController extends Controller
     public function store(StoreProductRequest $request) {
         
         $prodData = $request->validated(); 
-        //dd($prodData);
         $randomNumber = mt_rand(1000000000000, 9999999999999); 
         $prodData['sid'] = "$randomNumber";
         $custom = hexdec(uniqid());
@@ -81,7 +80,7 @@ class ProductController extends Controller
             $request->productImage->move(public_path('images'), $imageName);
             $prodData['image_url'] = $imageName;
         }
-        
+        $prodData['status'] = $request->status;
         $insert = Product::create($prodData);
         if($insert) {
             return redirect()->route('products.index')->with('success', 'Product Added!');
